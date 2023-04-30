@@ -17,19 +17,20 @@ interface WeatherData {
 function App() {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const API_KEY = "5403a75c4ed202a7421597001decdcf9";
-  const placeArray = [
-    { name: "ちくさ高原キャンプ場", lat: "35.22", lon: "134.39" },
-    { name: "ふもとっぱら", lat: "35.40", lon: "138.56" },
-    { name: "グリーンパーク山東", lat: "35.37", lon: "136.36" },
-    {
-      name: "キャンプアンドキャビンズ那須高原",
-      lat: "37.02",
-      lon: "140.03",
-    },
-    { name: "波戸岬キャンプ場", lat: "33.54", lon: "129.84" },
-  ];
 
   useEffect(() => {
+    const placeArray = [
+      { name: "ちくさ高原キャンプ場", lat: "35.22", lon: "134.39" },
+      { name: "ふもとっぱら", lat: "35.40", lon: "138.56" },
+      { name: "グリーンパーク山東", lat: "35.37", lon: "136.36" },
+      {
+        name: "キャンプアンドキャビンズ那須高原",
+        lat: "37.02",
+        lon: "140.03",
+      },
+      { name: "波戸岬キャンプ場", lat: "33.54", lon: "129.84" },
+    ];
+
     const fetchData = async () => {
       const promises = placeArray.map(async (city) => {
         const res = await axios.get(
