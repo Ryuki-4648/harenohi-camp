@@ -15,9 +15,9 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const API_KEY = "5403a75c4ed202a7421597001decdcf9";
   const placeArray = [
-    { name: "Kobe", lat: "34.69", lon: "135.19" },
-    { name: "Tokyo", lat: "35.69", lon: "139.69" },
-    { name: "Kyoto", lat: "35.01", lon: "135.75" },
+    { name: "ちくさ高原キャンプ場", lat: "35.22", lon: "134.39" },
+    { name: "ふもとっぱら", lat: "35.40", lon: "138.56" },
+    { name: "グリーンパーク山東", lat: "35.37", lon: "136.36" },
   ];
 
   useEffect(() => {
@@ -69,22 +69,24 @@ function App() {
 
       <h1 className="text-center text-4xl">ハレノヒキャンプ</h1>
       <div className="text-center">
-        <p>週末どこでキャンプしよう？</p>
+        <p className="mb-20">週末どこでキャンプしよう？</p>
       </div>
 
-      <div>
-        {weatherData.map((data, index) => (
-          <div key={index}>
-            <h2 className="text-xl">{data.city}</h2>
-            <p>{data.date}</p>
-            <img
-              src={`http://openweathermap.org/img/w/${data.icon}.png`}
-              alt="weather icon"
-            />
-            <p>最低気温: {data.minTemp}℃</p>
-            <p>最高気温: {data.maxTemp}℃</p>
-          </div>
-        ))}
+      <div className="mx-auto w-11/12">
+        <div className="flex flex-wrap">
+          {weatherData.map((data, index) => (
+            <div key={index} className="mb-20 w-1/5">
+              <h2 className="text-xl">{data.city}</h2>
+              <p>{data.date}</p>
+              <img
+                src={`http://openweathermap.org/img/w/${data.icon}.png`}
+                alt="weather icon"
+              />
+              <p>最低気温: {data.minTemp}℃</p>
+              <p>最高気温: {data.maxTemp}℃</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
