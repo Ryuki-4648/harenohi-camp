@@ -11,12 +11,14 @@ interface WeatherData {
   day: string;
   minTemp: number;
   maxTemp: number;
+  humidity: number;
+  windSpeed: number;
   icon: string;
 }
 
 function App() {
-  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
-  const API_KEY = "5403a75c4ed202a7421597001decdcf9";
+  const [weatherData, setWeatherData] = useState<WeatherData[]>([]); // 初期は空の配列
+  const API_KEY = "5403a75c4ed202a7421597001decdcf9"; // 自分のAPIキー
 
   useEffect(() => {
     const placeArray = [
@@ -38,6 +40,7 @@ function App() {
         );
         const data = res.data.list;
         const parsedData: WeatherData[] = [];
+        console.log(data);
 
         data.forEach((item: any) => {
           const date = item.dt_txt.split(" ")[0]; // dt_txtの例 2022-08-30 15:00:00
@@ -54,16 +57,18 @@ function App() {
               day: day,
               minTemp: Math.round(item.main.temp_min * 10) / 10,
               maxTemp: Math.round(item.main.temp_max * 10) / 10,
+              humidity: item.main.humidity,
+              windSpeed: item.wind.speed,
               icon: item.weather[0].icon,
             });
           }
         });
-
+        //console.log(parsedData); // 各キャンプ場のオブジェクト
         return parsedData;
       });
 
       const result = await Promise.all(promises);
-      const mergedData: WeatherData[] = result.flat();
+      const mergedData: WeatherData[] = result.flat(); // flatメソッド すべてのサブ配列の要素を、指定した深さで再帰的に結合した新しい配列を生成
       setWeatherData(mergedData);
     };
 
@@ -102,8 +107,10 @@ function App() {
                 src={`http://openweathermap.org/img/w/${data.icon}.png`}
                 alt="天気のマーク"
               />
-              <p>最低気温: {data.minTemp}℃</p>
-              <p>最高気温: {data.maxTemp}℃</p>
+              <p className="text-sm">最低気温: {data.minTemp}℃</p>
+              <p className="text-sm">最高気温: {data.maxTemp}℃</p>
+              <p className="text-sm">湿度: {data.humidity}%</p>
+              <p className="text-sm">風速: {data.windSpeed}m/s</p>
             </div>
           ))}
         </div>
