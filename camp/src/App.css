@@ -3,6 +3,12 @@
 }
 
 body {
-  background-color: #82ccd1;
+  background-color: #d4caba;
   font-family: 'Kiwi Maru', serif;
+}
+
+.text-vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-family: 'Sigmar', cursive;
 }

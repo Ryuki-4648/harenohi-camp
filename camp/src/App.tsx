@@ -9,6 +9,7 @@ interface WeatherData {
   year: string;
   month: string;
   day: string;
+  temp: number;
   minTemp: number;
   maxTemp: number;
   humidity: number;
@@ -36,8 +37,9 @@ function App() {
     const fetchData = async () => {
       const promises = placeArray.map(async (city) => {
         const res = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${API_KEY}&units=metric`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&cnt=24&appid=${API_KEY}&units=metric`
         );
+        // APIエンドポイントの応答は3時間ごとに区切られている。1回のリクエストで翌日からの5日間（120時間）取得できる。
         const data = res.data.list;
         const parsedData: WeatherData[] = [];
         console.log(data);
@@ -48,13 +50,14 @@ function App() {
           const year = date.split("-")[0];
           const month = date.split("-")[1];
           const day = date.split("-")[2];
-          if (hour === "12:00:00") {
+          if (hour === "15:00:00") {
             parsedData.push({
               city: city.name,
               date: date,
               year: year,
               month: month,
               day: day,
+              temp: Math.round(item.main.temp * 10) / 10,
               minTemp: Math.round(item.main.temp_min * 10) / 10,
               maxTemp: Math.round(item.main.temp_max * 10) / 10,
               humidity: item.main.humidity,
@@ -76,10 +79,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App bg-co">
+    <div className="App">
       <header className="px-10 pt-4">
         <a
-          className="inline-block w-40"
+          className="fixed inline-block w-40"
           href="/"
           target="_blank"
           rel="noopener noreferrer"
@@ -88,29 +91,42 @@ function App() {
         </a>
       </header>
 
-      <h1 className="mb-6 text-center text-5xl">ハレノヒキャンプ</h1>
-      <div className="text-center">
-        <p className="mb-32">晴れの日、どこでキャンプしよう？</p>
-      </div>
+      <p className="text-vertical fixed right-8 top-16 text-3xl uppercase tracking-wider">
+        Enjoy camping in sunny day!
+      </p>
 
-      <div className="mx-auto w-11/12">
+      <img
+        src="./dummy01.png"
+        alt="キャンプの写真"
+        className="align-center mx-auto mb-20 w-3/5"
+      />
+      <h1 className="mb-6 text-center text-5xl">ハレノヒキャンプ</h1>
+      <p className="mb-32 text-center">晴れの日、どこでキャンプする？</p>
+      <div className="mx-auto w-11/12 lg:w-3/4">
         <div className="flex flex-wrap">
           {weatherData.map((data, index) => (
-            <div key={index} className="mx-auto mb-20 w-1/5">
+            <div
+              key={index}
+              className="mx-auto mb-12 w-full sm:w-1/2 md:mb-36 md:w-1/3"
+            >
               {index === 0 || data.city !== weatherData[index - 1].city ? (
-                <h2 className="-mt-7 text-xl font-semibold">{data.city}</h2>
+                <h2 className="-mt-16 mb-8 text-xl font-semibold lg:text-2xl">
+                  {data.city}
+                </h2>
               ) : null}
-              <p>
+              <p className="text-xl">
                 {data.month}月{data.day}日
               </p>
               <img
                 src={`http://openweathermap.org/img/w/${data.icon}.png`}
                 alt="天気のマーク"
+                className="w-40"
               />
-              <p className="text-sm">最低気温: {data.minTemp}℃</p>
-              <p className="text-sm">最高気温: {data.maxTemp}℃</p>
-              <p className="text-sm">湿度: {data.humidity}%</p>
-              <p className="text-sm">風速: {data.windSpeed}m/s</p>
+              {/* <p className="text-md mb-2">最低気温: {data.minTemp}℃</p>
+              <p className="text-md mb-2">最高気温: {data.maxTemp}℃</p> */}
+              <p className="text-md mb-2">気温: {data.temp}℃</p>
+              <p className="text-md mb-2">湿度: {data.humidity}%</p>
+              <p className="text-md">風速: {data.windSpeed}m/s</p>
             </div>
           ))}
         </div>
