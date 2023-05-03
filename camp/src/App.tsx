@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo01.png";
 import "./App.css";
 import axios from "axios";
+import Header from "./components/Header";
 
 interface WeatherData {
   city: string;
@@ -79,17 +79,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="px-10 pt-4">
-        <a
-          className="fixed inline-block w-40"
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={logo} className="w-40" alt="ハレノヒキャンプのロゴ" />
-        </a>
-      </header>
+    <div className="App pt-20">
+      <Header />
 
       <p className="text-vertical fixed right-8 top-16 text-3xl uppercase tracking-wider">
         Enjoy camping in sunny day!
