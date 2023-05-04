@@ -96,29 +96,28 @@ function App() {
   }, [sliderImages.length]);
 
   return (
-    <div className="App pt-20">
+    <div className="App pt-24 lg:pt-20">
       <Header />
 
-      <p className="text-vertical fixed right-8 top-16 text-3xl uppercase tracking-wider">
+      <p className="text-vertical fixed right-3 top-16 text-sm uppercase tracking-wider lg:right-8 lg:text-3xl">
         Enjoy camping in sunny day!
       </p>
 
       <img
         src={sliderImages[currentImageIndex]}
         alt="メインビジュアルのスライダー画像"
-        className="slider-image align-center mx-auto mb-20 w-3/5"
+        className="slider-image align-center mx-auto mb-12 w-4/5 sm:mb-20 lg:w-3/5"
       />
-      <h1 className="mb-6 text-center text-5xl">ハレノヒキャンプ</h1>
+      <h1 className="mb-6 text-center text-4xl sm:text-5xl">
+        ハレノヒキャンプ
+      </h1>
       <p className="mb-32 text-center">晴れの日、どこでキャンプする？</p>
       <div className="mx-auto w-11/12 lg:w-3/4">
         <div className="flex flex-wrap">
           {weatherData.map((data, index) => (
-            <div
-              key={index}
-              className="mx-auto mb-12 w-full sm:w-1/2 md:mb-36 md:w-1/3"
-            >
+            <div key={index} className="mx-auto mb-20 w-full md:mb-36 md:w-1/3">
               {index === 0 || data.city !== weatherData[index - 1].city ? (
-                <h2 className="-mt-16 mb-8 text-xl font-semibold lg:text-2xl">
+                <h2 className="mb-8 text-xl font-semibold md:-mt-16 lg:text-2xl">
                   {data.city}
                 </h2>
               ) : null}
