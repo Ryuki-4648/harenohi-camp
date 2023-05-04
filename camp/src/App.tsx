@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
+import image01 from "./slider01.png";
+import image02 from "./slider02.png";
+import image03 from "./slider03.png";
+import image04 from "./slider04.png";
+import image05 from "./slider05.png";
 
 interface WeatherData {
   city: string;
@@ -78,6 +83,18 @@ function App() {
     fetchData();
   }, []);
 
+  // メインビジュアルのスライダー
+  const sliderImages = [image01, image02, image03, image04, image05];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % sliderImages.length
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [sliderImages.length]);
+
   return (
     <div className="App pt-20">
       <Header />
@@ -87,9 +104,9 @@ function App() {
       </p>
 
       <img
-        src="./dummy01.png"
-        alt="キャンプの写真"
-        className="align-center mx-auto mb-20 w-3/5"
+        src={sliderImages[currentImageIndex]}
+        alt="メインビジュアルのスライダー画像"
+        className="slider-image align-center mx-auto mb-20 w-3/5"
       />
       <h1 className="mb-6 text-center text-5xl">ハレノヒキャンプ</h1>
       <p className="mb-32 text-center">晴れの日、どこでキャンプする？</p>
