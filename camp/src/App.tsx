@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
-import image01 from "./slider01.png";
-import image02 from "./slider02.png";
-import image03 from "./slider03.png";
-import image04 from "./slider04.png";
-import image05 from "./slider05.png";
+import image01 from "./slider/slider01.png";
+import image02 from "./slider/slider02.png";
+import image03 from "./slider/slider03.png";
+import image04 from "./slider/slider04.png";
+import image05 from "./slider/slider05.png";
 import bg01 from "./bg01.svg";
 import title01 from "./title01.svg";
+import icon01 from "./icon/icon01.svg";
+import icon02 from "./icon/icon02.svg";
+import icon03 from "./icon/icon03.svg";
 
 interface WeatherData {
   city: string;
@@ -22,6 +25,7 @@ interface WeatherData {
   humidity: number;
   windSpeed: number;
   icon: string;
+  description: string;
 }
 
 function App() {
@@ -49,7 +53,7 @@ function App() {
         // APIエンドポイントの応答は3時間ごとに区切られている。1回のリクエストで翌日からの5日間（120時間）取得できる。
         const data = res.data.list;
         const parsedData: WeatherData[] = [];
-        // console.log(data);
+        console.log(data);
 
         data.forEach((item: any) => {
           const date = item.dt_txt.split(" ")[0]; // dt_txtの例 2022-08-30 15:00:00
@@ -69,7 +73,8 @@ function App() {
               maxTemp: Math.round(item.main.temp_max * 10) / 10,
               humidity: item.main.humidity,
               windSpeed: item.wind.speed,
-              icon: item.weather[0].icon,
+              icon: item.weather[0].icon.replace("n", "d"),
+              description: item.weather[0].description,
             });
           }
         });
@@ -114,18 +119,32 @@ function App() {
         <img
           src={bg01}
           alt=""
-          className="absolute bottom-0 -z-10 md:-bottom-8 lg:-bottom-24"
+          className="absolute bottom-0 -z-10 md:-bottom-8 lg:-bottom-32"
         />
       </section>
 
       <section className="main-content">
-        <h1 className="mb-6 text-center text-4xl sm:text-5xl">
-          <img
-            src={title01}
-            alt="ハレノヒキャンプ"
-            className="mx-auto w-64 md:w-96"
-          />
-        </h1>
+        <div className="text-center">
+          <h1 className="relative mb-6 inline-block w-64 text-center text-4xl sm:text-5xl md:w-96">
+            <img src={title01} alt="ハレノヒキャンプ" className="mx-auto" />
+            <img
+              src={icon01}
+              alt=""
+              className="absolute -right-16 -top-2 w-12"
+            />
+            <img
+              src={icon02}
+              alt=""
+              className="absolute -left-20 -top-4 w-12"
+            />
+            <img src={icon03} alt="" className="absolute -left-32 top-4 w-12" />
+            <img
+              src={icon03}
+              alt=""
+              className="absolute -right-32 top-4 w-12"
+            />
+          </h1>
+        </div>
         <p className="mb-32 text-center">晴れの日、どこでキャンプする？</p>
         <div className="mx-auto w-11/12 lg:w-3/4">
           <div className="flex flex-wrap">
@@ -143,15 +162,16 @@ function App() {
                   {data.month}月{data.day}日
                 </p>
                 <img
-                  src={`http://openweathermap.org/img/w/${data.icon}.png`}
+                  src={`http://openweathermap.org/img/wn/${data.icon}.png`}
                   alt="天気のマーク"
-                  className="w-40"
+                  className="w-18"
                 />
                 {/* <p className="text-md mb-2">最低気温: {data.minTemp}℃</p>
                 <p className="text-md mb-2">最高気温: {data.maxTemp}℃</p> */}
                 <p className="text-md mb-2">気温: {data.temp}℃</p>
                 <p className="text-md mb-2">湿度: {data.humidity}%</p>
-                <p className="text-md">風速: {data.windSpeed}m/s</p>
+                <p className="text-md mb-2">風速: {data.windSpeed}m/s</p>
+                <p className="text-sm text-gray-800">{data.description}</p>
               </div>
             ))}
           </div>
