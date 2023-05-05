@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
+import Title from "./components/Title";
 import image01 from "./slider/slider01.png";
 import image02 from "./slider/slider02.png";
 import image03 from "./slider/slider03.png";
 import image04 from "./slider/slider04.png";
 import image05 from "./slider/slider05.png";
 import bg01 from "./bg01.svg";
-import title01 from "./title01.svg";
-import icon01 from "./icon/icon01.svg";
-import icon02 from "./icon/icon02.svg";
-import icon03 from "./icon/icon03.svg";
 
 interface WeatherData {
   city: string;
@@ -124,28 +121,7 @@ function App() {
       </section>
 
       <section className="main-content">
-        <div className="text-center">
-          <h1 className="relative mb-6 inline-block w-64 text-center text-4xl sm:text-5xl md:w-96">
-            <img src={title01} alt="ハレノヒキャンプ" className="mx-auto" />
-            <img
-              src={icon01}
-              alt=""
-              className="absolute -right-16 -top-2 w-12"
-            />
-            <img
-              src={icon02}
-              alt=""
-              className="absolute -left-20 -top-4 w-12"
-            />
-            <img src={icon03} alt="" className="absolute -left-32 top-4 w-12" />
-            <img
-              src={icon03}
-              alt=""
-              className="absolute -right-32 top-4 w-12"
-            />
-          </h1>
-        </div>
-        <p className="mb-32 text-center">晴れの日、どこでキャンプする？</p>
+        <Title />
         <div className="mx-auto w-11/12 lg:w-3/4">
           <div className="flex flex-wrap">
             {weatherData.map((data, index) => (
