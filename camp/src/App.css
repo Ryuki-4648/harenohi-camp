@@ -1,9 +1,9 @@
 .App {
-  //background-image: url("../public/image01.jpg")
+  
 }
 
 body {
-  background-color: #d4caba;
+  background-color: #d3e8e7;
   font-family: 'Kiwi Maru', serif;
 }
 
@@ -11,4 +11,8 @@ body {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   font-family: 'Sigmar', cursive;
+}
+
+.main-content {
+  background-color: #ede5d8;
 }
