@@ -107,7 +107,7 @@ function App() {
         Enjoy camping in sunny day!
       </p>
 
-      <section className="main-visual relative pb-12 pt-24 md:pb-24 lg:pb-32 lg:pt-20">
+      <section className="main-visual relative pb-12 pt-24 md:pb-24 lg:pb-40 lg:pt-20">
         <img
           src={sliderImages[currentImageIndex]}
           alt="メインビジュアルのスライダー画像"
@@ -116,7 +116,7 @@ function App() {
         <img
           src={bg01}
           alt=""
-          className="absolute bottom-0 -z-10 md:-bottom-8 lg:-bottom-32"
+          className="absolute bottom-0 -z-10 md:-bottom-8 lg:-bottom-20"
         />
       </section>
 
@@ -142,12 +142,12 @@ function App() {
                   alt="天気のマーク"
                   className="w-18"
                 />
+                <p className="mb-2 text-sm text-gray-600">{data.description}</p>
                 {/* <p className="text-md mb-2">最低気温: {data.minTemp}℃</p>
                 <p className="text-md mb-2">最高気温: {data.maxTemp}℃</p> */}
                 <p className="text-md mb-2">気温: {data.temp}℃</p>
                 <p className="text-md mb-2">湿度: {data.humidity}%</p>
-                <p className="text-md mb-2">風速: {data.windSpeed}m/s</p>
-                <p className="text-sm text-gray-800">{data.description}</p>
+                <p className="text-md">風速: {data.windSpeed}m/s</p>
               </div>
             ))}
           </div>
