@@ -9,6 +9,7 @@ import image03 from "./slider/slider03.png";
 import image04 from "./slider/slider04.png";
 import image05 from "./slider/slider05.png";
 import bg01 from "./bg01.svg";
+import bg02 from "./bg02.svg";
 
 interface WeatherData {
   city: string;
@@ -50,7 +51,7 @@ function App() {
         // APIエンドポイントの応答は3時間ごとに区切られている。1回のリクエストで翌日からの5日間（120時間）取得できる。
         const data = res.data.list;
         const parsedData: WeatherData[] = [];
-        console.log(data);
+        //console.log(data);
 
         data.forEach((item: any) => {
           const date = item.dt_txt.split(" ")[0]; // dt_txtの例 2022-08-30 15:00:00
@@ -89,14 +90,15 @@ function App() {
 
   // メインビジュアルのスライダー
   const sliderImages = [image01, image02, image03, image04, image05];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // 現在表示されている画像のインデックスを保持
   useEffect(() => {
+    // 画像のインデックスを更新するインターバル処理
     const interval = setInterval(() => {
       setCurrentImageIndex(
         (prevIndex) => (prevIndex + 1) % sliderImages.length
       );
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // コンポーネントがアンマウントされる際にインターバル処理をクリアするための処理
   }, [sliderImages.length]);
 
   return (
@@ -111,7 +113,7 @@ function App() {
         <img
           src={sliderImages[currentImageIndex]}
           alt="メインビジュアルのスライダー画像"
-          className="slider-image align-center mx-auto mb-12 w-4/5 sm:mb-20 lg:w-3/5"
+          className="slider-image align-center mx-auto mb-12 w-4/5 sm:mb-20 lg:w-1/2"
         />
         <img
           src={bg01}
@@ -120,7 +122,7 @@ function App() {
         />
       </section>
 
-      <section className="main-content">
+      <section className="main-content pb-40">
         <Title />
         <div className="mx-auto w-11/12 lg:w-3/4">
           <div className="flex flex-wrap">
@@ -154,7 +156,14 @@ function App() {
         </div>
       </section>
 
-      <section className="h-40 bg-gray-100"></section>
+      <section className="relative flex content-end justify-center bg-green-900 pb-3 pt-40">
+        <img
+          src={bg02}
+          alt=""
+          className="absolute -top-14 z-10 md:-top-20 lg:-top-24"
+        />
+        <p className="text-xs">&copy; ハレノヒキャンプ</p>
+      </section>
     </div>
   );
 }
