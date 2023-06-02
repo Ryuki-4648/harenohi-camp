@@ -8,7 +8,6 @@ import image02 from "./slider/slider02.png";
 import image03 from "./slider/slider03.png";
 import image04 from "./slider/slider04.png";
 import image05 from "./slider/slider05.png";
-import bg01 from "./bg01.svg";
 import bg02 from "./bg02.svg";
 
 interface WeatherData {
