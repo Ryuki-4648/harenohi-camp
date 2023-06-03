@@ -8,6 +8,7 @@ import image02 from "./slider/slider02.png";
 import image03 from "./slider/slider03.png";
 import image04 from "./slider/slider04.png";
 import image05 from "./slider/slider05.png";
+import bg01 from "./bg01.svg";
 import bg02 from "./bg02.svg";
 
 interface WeatherData {
@@ -104,16 +105,26 @@ function App() {
     <div className="App">
       <Header />
 
-      <p className="text-vertical fixed right-3 top-16 text-sm uppercase tracking-wider lg:right-8 lg:text-3xl">
+      <p className="text-vertical fixed right-3 top-16 text-sm tracking-widest lg:right-8 lg:text-3xl">
         Enjoy camping in sunny day!
       </p>
 
       <section className="main-visual relative pb-12 pt-24 md:pb-24 lg:pb-40 lg:pt-20">
-        <img
-          src={sliderImages[currentImageIndex]}
-          alt="メインビジュアルのスライダー画像"
-          className="slider-image align-center mx-auto mb-12 w-4/5 sm:mb-20 lg:w-1/2"
-        />
+        <div className="relative mx-auto w-4/5 lg:w-1/2">
+          <img
+            src={sliderImages[currentImageIndex]}
+            alt="メインビジュアルのスライダー画像"
+            className="slider-image align-center relative mx-auto mb-12 w-full sm:mb-20"
+          />
+          <div className="w-100 absolute -left-48 bottom-24 inline-block bg-white px-8 py-4">
+            <p className="text-5xl">STAY! EAT! ENJOY!</p>
+          </div>
+          <div className="absolute -left-48 bottom-8 inline-block w-96 bg-white px-4 py-2">
+            <p className="text-md">
+              晴れの日キャンプで わくわく・どきどき体験！
+            </p>
+          </div>
+        </div>
         <img
           src={bg01}
           alt=""

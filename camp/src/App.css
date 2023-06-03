@@ -10,7 +10,7 @@ body {
 .text-vertical {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-  font-family: 'Sigmar', cursive;
+  font-family: 'Abel', sans-serif;
 }
 
 .main-content {
