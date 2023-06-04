@@ -109,18 +109,20 @@ function App() {
         Enjoy camping in sunny day!
       </p>
 
-      <section className="main-visual relative pb-12 pt-24 md:pb-24 lg:pb-40 lg:pt-20">
+      <section className="main-visual relative pb-20 pt-24 md:pb-24 lg:pb-40 lg:pt-20">
         <div className="relative mx-auto w-4/5 lg:w-1/2">
           <img
             src={sliderImages[currentImageIndex]}
             alt="メインビジュアルのスライダー画像"
             className="slider-image align-center relative mx-auto mb-12 w-full sm:mb-20"
           />
-          <div className="w-100 absolute -left-48 bottom-24 inline-block bg-white px-8 py-4">
-            <p className="text-5xl">STAY! EAT! ENJOY!</p>
+          <div className="absolute -bottom-2 -left-8 inline-block w-64 bg-white px-2 py-2 md:-left-12 md:bottom-20 md:w-80 md:px-8 md:py-4 lg:-left-48 lg:bottom-24 lg:w-2/3">
+            <p className="text-xl md:text-2xl lg:text-5xl lg:tracking-wider">
+              STAY! EAT! ENJOY!
+            </p>
           </div>
-          <div className="absolute -left-48 bottom-8 inline-block w-96 bg-white px-4 py-2">
-            <p className="text-md">
+          <div className="absolute -bottom-12 -left-8 inline-block w-72 bg-white px-4 py-2 md:-left-12 md:bottom-8 md:w-80 lg:-left-48 lg:w-96">
+            <p className="text-xs lg:text-base">
               晴れの日キャンプで わくわく・どきどき体験！
             </p>
           </div>
