@@ -10,6 +10,7 @@ import image04 from "./slider/slider04.png";
 import image05 from "./slider/slider05.png";
 import bg01 from "./bg01.svg";
 import bg02 from "./bg02.svg";
+import { BiLinkExternal } from "react-icons/bi";
 
 interface WeatherData {
   city: string;
@@ -24,6 +25,8 @@ interface WeatherData {
   windSpeed: number;
   icon: string;
   description: string;
+  url: string;
+  pref: string;
 }
 
 function App() {
@@ -32,15 +35,76 @@ function App() {
 
   useEffect(() => {
     const placeArray = [
-      { name: "ちくさ高原キャンプ場", lat: "35.22", lon: "134.39" },
-      { name: "ふもとっぱら", lat: "35.40", lon: "138.56" },
-      { name: "グリーンパーク山東", lat: "35.37", lon: "136.36" },
       {
-        name: "キャンプアンドキャビンズ那須高原",
-        lat: "37.02",
-        lon: "140.03",
+        name: "ちくさ高原キャンプ場",
+        lat: "35.213928645135276",
+        lon: "134.39454838053783",
+        url: "https://www.chikusakogen.com/camp/",
+        pref: "兵庫県",
       },
-      { name: "波戸岬キャンプ場", lat: "33.54", lon: "129.84" },
+      {
+        name: "ふもとっぱら",
+        lat: "35.39956791766412",
+        lon: "138.56543427632667",
+        url: "https://fumotoppara.net/",
+        pref: "静岡県",
+      },
+      {
+        name: "グリーンパーク山東",
+        lat: "35.372537239674585",
+        lon: "136.36280647555668",
+        url: "https://greenpark-santo.com/",
+        pref: "滋賀県",
+      },
+      {
+        name: "キャンプ&キャビンズ那須高原",
+        lat: "37.02167152623438",
+        lon: "140.03795686501616",
+        url: "https://www.camp-cabins.com/",
+        pref: "栃木県",
+      },
+      {
+        name: "波戸岬キャンプ場",
+        lat: "33.54586668534841",
+        lon: "129.84982006645023",
+        url: "https://www.hadomisaki-camp.jp/",
+        pref: "福岡県",
+      },
+      {
+        name: "南光自然観察村",
+        lat: "35.08804021719414",
+        lon: "134.42928509773049",
+        url: "https://www.nanko-camp.com/",
+        pref: "兵庫県",
+      },
+      {
+        name: "CAMP Knot",
+        lat: "33.555089876626084",
+        lon: "135.48284925800436",
+        url: "https://campknot.com/",
+        pref: "和歌山県",
+      },
+      {
+        name: "焚き火キャンプ場 士別ペコラ",
+        lat: "44.15974418849687",
+        lon: "142.40465831811127",
+        url: "https://pecora.jp/camp/",
+        pref: "北海道",
+      },
+      {
+        name: "奥八女焚火の森キャンプフィールド",
+        lat: "33.22450883083387",
+        lon: "130.73685886221665",
+        url: "https://www.takibinomori.com/",
+        pref: "福岡県",
+      },
+      {
+        name: "長崎鼻ビーチリゾート",
+        lat: "33.68128749845433",
+        lon: "131.52818211985402",
+        url: "https://nagasakibana-beach.com/",
+        pref: "長崎県",
+      },
     ];
 
     const fetchData = async () => {
@@ -57,8 +121,8 @@ function App() {
           const date = item.dt_txt.split(" ")[0]; // dt_txtの例 2022-08-30 15:00:00
           const hour = item.dt_txt.split(" ")[1];
           const year = date.split("-")[0];
-          const month = date.split("-")[1];
-          const day = date.split("-")[2];
+          const month = parseInt(date.split("-")[1], 10).toString();
+          const day = parseInt(date.split("-")[2]).toString();
           if (hour === "15:00:00") {
             parsedData.push({
               city: city.name,
@@ -73,6 +137,8 @@ function App() {
               windSpeed: item.wind.speed,
               icon: item.weather[0].icon.replace("n", "d"),
               description: item.weather[0].description,
+              url: city.url,
+              pref: city.pref,
             });
           }
         });
@@ -105,7 +171,7 @@ function App() {
     <div className="App">
       <Header />
 
-      <p className="text-vertical fixed right-3 top-16 text-sm tracking-widest lg:right-8 lg:text-3xl">
+      <p className="text-vertical fixed right-3 top-16 z-30 text-sm tracking-widest lg:right-8 lg:text-3xl">
         Enjoy camping in sunny day!
       </p>
 
@@ -141,20 +207,34 @@ function App() {
             {weatherData.map((data, index) => (
               <div
                 key={index}
-                className="mx-auto mb-20 w-full md:mb-36 md:w-1/3"
+                className="mx-auto mb-20 w-full md:mb-48 md:w-1/3"
               >
                 {index === 0 || data.city !== weatherData[index - 1].city ? (
-                  <h2 className="mb-8 text-xl font-semibold md:-mt-16 lg:text-2xl">
-                    {data.city}
-                  </h2>
+                  <>
+                    <h2 className="mb-2 text-xl font-semibold md:-mt-24 lg:text-xl">
+                      {data.city}
+                    </h2>
+                    <p className="mb-4 w-20 rounded-xl border border-solid border-gray-700 text-center text-xs text-gray-700">
+                      {data.pref}
+                    </p>
+                    <a
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-900 underline hover:opacity-70"
+                    >
+                      サイトを見る
+                      <BiLinkExternal className="ml-2 inline text-sm" />
+                    </a>
+                  </>
                 ) : null}
-                <p className="text-xl">
-                  {data.month}月{data.day}日
+                <p className="mt-8 text-xl tracking-wider">
+                  {data.month}/{data.day}
                 </p>
                 <img
-                  src={`http://openweathermap.org/img/wn/${data.icon}.png`}
+                  src={`./icon/${data.icon}.svg`}
                   alt="天気のマーク"
-                  className="w-18"
+                  className="my-4 w-16"
                 />
                 <p className="mb-2 text-sm text-gray-600">{data.description}</p>
                 {/* <p className="text-md mb-2">最低気温: {data.minTemp}℃</p>
