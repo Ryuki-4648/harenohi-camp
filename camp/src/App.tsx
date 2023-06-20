@@ -3,13 +3,6 @@ import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
 import Title from "./components/Title";
-import image01 from "./slider/slider01.png";
-import image02 from "./slider/slider02.png";
-import image03 from "./slider/slider03.png";
-import image04 from "./slider/slider04.png";
-import image05 from "./slider/slider05.png";
-import bg01 from "./bg01.svg";
-import bg02 from "./bg02.svg";
 import { BiLinkExternal } from "react-icons/bi";
 
 interface WeatherData {
@@ -155,7 +148,13 @@ function App() {
   }, []);
 
   // メインビジュアルのスライダー
-  const sliderImages = [image01, image02, image03, image04, image05];
+  const sliderImages = [
+    "./slider/slider01.png",
+    "./slider/slider02.png",
+    "./slider/slider03.png",
+    "./slider/slider04.png",
+    "./slider/slider05.png",
+  ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // 現在表示されている画像のインデックスを保持
   useEffect(() => {
     // 画像のインデックスを更新するインターバル処理
@@ -194,7 +193,7 @@ function App() {
           </div>
         </div>
         <img
-          src={bg01}
+          src="./bg/bg01.svg"
           alt=""
           className="absolute bottom-0 -z-10 md:-bottom-8 lg:-bottom-20"
         />
@@ -250,7 +249,7 @@ function App() {
 
       <section className="relative flex content-end justify-center bg-green-900 pb-3 pt-40">
         <img
-          src={bg02}
+          src="./bg/bg02.svg"
           alt=""
           className="absolute -top-14 z-10 md:-top-20 lg:-top-24"
         />
