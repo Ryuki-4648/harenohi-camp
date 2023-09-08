@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <Header />
 
-      <p className="text-vertical fixed right-3 top-16 z-30 text-sm tracking-widest lg:right-8 lg:text-3xl">
+      <p className="text-vertical font01 fixed right-3 top-16 z-30 text-sm tracking-widest lg:right-8 lg:text-3xl">
         Enjoy camping in sunny day!
       </p>
 
@@ -35,13 +35,16 @@ function App() {
             alt="メインビジュアルのスライダー画像"
             className="slider-image align-center relative mx-auto mb-12 w-full sm:mb-20"
           />
-          <div className="absolute -bottom-2 -left-8 inline-block w-64 bg-white px-2 py-2 md:-left-12 md:bottom-20 md:w-80 md:px-8 md:py-4 lg:-left-48 lg:bottom-24 lg:w-2/3">
-            <p className="text-xl md:text-2xl lg:text-5xl lg:tracking-wider">
-              STAY! EAT! ENJOY!
+          <div className="absolute -bottom-2 -left-8 inline-block md:-left-12 md:bottom-20 lg:-left-48 lg:bottom-28">
+            <p className="font01 text-md mb-2 lg:text-xl lg:tracking-wider">
+              BREATH OF WIND
+            </p>
+            <p className="font01 text-xl md:text-3xl lg:text-6xl lg:tracking-wider">
+              CHILL OUT
             </p>
           </div>
-          <div className="absolute -bottom-12 -left-8 inline-block w-72 bg-white px-4 py-2 md:-left-12 md:bottom-8 md:w-80 lg:-left-48 lg:w-96">
-            <p className="text-xs lg:text-base">
+          <div className="absolute -bottom-12 -left-8 inline-block w-72 border border-white px-4 py-2 md:-left-12 md:bottom-8 md:w-80 lg:-left-48 lg:w-96">
+            <p className="text-xs text-white lg:text-base">
               晴れの日キャンプで わくわく・どきどき体験！
             </p>
           </div>
@@ -60,21 +63,21 @@ function App() {
             {weatherData.map((data, index) => (
               <div
                 key={index}
-                className="mx-auto mb-20 w-full md:mb-48 md:w-1/3"
+                className="mx-auto mb-20 w-full md:mb-60 md:w-1/3"
               >
                 {index === 0 || data.city !== weatherData[index - 1].city ? (
                   <>
                     <h2 className="mb-2 text-xl font-semibold md:-mt-24 lg:text-xl">
                       {data.city}
                     </h2>
-                    <p className="mb-4 w-20 rounded-xl border border-solid border-gray-700 text-center text-xs text-gray-700">
+                    <p className="text-md mb-4 w-24 rounded-xl border border-solid border-gray-700 text-center text-gray-700">
                       {data.pref}
                     </p>
                     <a
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-900 underline hover:opacity-70"
+                      className="text-md text-blue-900 underline hover:opacity-70"
                     >
                       サイトを見る
                       <BiLinkExternal className="ml-2 inline text-sm" />

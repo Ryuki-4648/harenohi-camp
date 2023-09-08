@@ -30,7 +30,7 @@ export default function Title() {
           />
         </h1>
       </div>
-      <p className="mb-16 text-center sm:mb-32">
+      <p className="mb-16 text-center sm:mb-60">
         晴れの日、どこでキャンプする？
       </p>
     </>
