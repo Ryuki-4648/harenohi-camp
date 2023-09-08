@@ -7,7 +7,19 @@ import { UsePlaceHooks } from "./hooks/usePlaceHooks";
 
 function App() {
   const { sliderImages, currentImageIndex } = UseSliderHooks();
-  const weatherData = UsePlaceHooks();
+  const { weatherData } = UsePlaceHooks();
+  /**
+   * const weatherData = UsePlaceHooks();
+   * → 「weatherDate.mapでプロパティ 'map' は型 '{ weatherData: WeatherData[]; }' に存在しません」のエラーあり。
+   * mapメソッドはオブジェクトには存在しないため。オブジェクトの場合はmapやforEachを使えない。
+   * mapメソッド：新しい配列を生成。配列を違う形に変換する。
+   *
+   * weatherData ＝ UsePlaceHooks() の戻り値そのもの、オブジェクト全体を含む。const weatherData: { weatherData: WeatherData[];}
+   *
+   * { weatherData }だと const weatherData: WeatherData[]
+   * → weatherDataプロパティを取り出して新しい変数weatherDataとして初期化している。
+   */
+
   return (
     <div className="App">
       <Header />
