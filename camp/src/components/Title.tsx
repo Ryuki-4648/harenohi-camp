@@ -2,7 +2,7 @@ export default function Title() {
   return (
     <>
       <div className="text-center">
-        <h1 className="relative mb-2 mt-6 inline-block w-64 text-center text-4xl sm:text-5xl md:mb-6 md:mt-8 md:w-96">
+        <h1 className="relative z-20 mb-2 mt-6 inline-block w-64 text-center text-4xl sm:text-5xl md:mb-6 md:mt-8 md:w-96">
           <img
             src="./title01.svg"
             alt="ハレノヒキャンプ"

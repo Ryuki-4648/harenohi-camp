@@ -4,6 +4,7 @@ import Title from "./components/Title";
 import { BiLinkExternal } from "react-icons/bi";
 import { UseSliderHooks } from "./hooks/useSliderHooks";
 import { UsePlaceHooks } from "./hooks/usePlaceHooks";
+import { Footer } from "./components/Footer";
 
 function App() {
   const { sliderImages, currentImageIndex } = UseSliderHooks();
@@ -21,7 +22,7 @@ function App() {
    */
 
   return (
-    <div className="App">
+    <div className="App bg-primary-bg01">
       <Header />
 
       <p className="text-vertical font01 fixed right-3 top-16 z-30 text-sm tracking-widest lg:right-8 lg:text-3xl">
@@ -35,28 +36,30 @@ function App() {
             alt="メインビジュアルのスライダー画像"
             className="slider-image align-center relative mx-auto mb-12 w-full sm:mb-20"
           />
-          <div className="absolute -bottom-2 -left-8 inline-block md:-left-12 md:bottom-20 lg:-left-48 lg:bottom-28">
+          <div className="absolute -left-8 bottom-8 inline-block md:-left-12 md:bottom-28 lg:-left-48 lg:bottom-32">
             <p className="font01 text-md mb-2 lg:text-xl lg:tracking-wider">
               BREATH OF WIND
             </p>
-            <p className="font01 text-xl md:text-3xl lg:text-6xl lg:tracking-wider">
+            <p className="font01 text-4xl md:text-5xl lg:text-6xl lg:tracking-wider">
               CHILL OUT
             </p>
           </div>
-          <div className="absolute -bottom-12 -left-8 inline-block w-72 border border-white px-4 py-2 md:-left-12 md:bottom-8 md:w-80 lg:-left-48 lg:w-96">
+          <div className="absolute -bottom-8 -left-8 inline-block border border-white px-4 py-2 md:-left-12 md:bottom-8 md:w-80 lg:-left-48">
             <p className="text-xs text-white lg:text-base">
-              晴れの日キャンプで わくわく・どきどき体験！
+              晴れの日キャンプで
+              <br />
+              わくわく・どきどき体験！
             </p>
           </div>
         </div>
         <img
           src="./bg/bg01.svg"
           alt=""
-          className="absolute bottom-0 -z-10 md:-bottom-8 lg:-bottom-20"
+          className="absolute bottom-0 z-10 md:-bottom-8 lg:-bottom-20"
         />
       </section>
 
-      <section className="main-content pb-40">
+      <section className="main-content bg-primary-bg02 pb-40">
         <Title />
         <div className="mx-auto w-11/12 lg:w-3/4">
           <div className="flex flex-wrap">
@@ -104,14 +107,7 @@ function App() {
         </div>
       </section>
 
-      <section className="relative flex content-end justify-center bg-green-900 pb-3 pt-40">
-        <img
-          src="./bg/bg02.svg"
-          alt=""
-          className="absolute -top-14 z-10 md:-top-20 lg:-top-24"
-        />
-        <p className="text-xs">&copy; ハレノヒキャンプ</p>
-      </section>
+      <Footer />
     </div>
   );
 }
